@@ -79,4 +79,5 @@ export class PlatformReviewComponent {
     this.dialogRef.close();
   }
 
+
 }
