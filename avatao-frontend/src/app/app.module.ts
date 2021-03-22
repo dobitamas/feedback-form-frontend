@@ -8,11 +8,13 @@ import { ShowmodalComponent } from './showmodal/showmodal.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { PlatformReviewComponent } from './platform-review/platform-review.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShowmodalComponent
+    ShowmodalComponent,
+    PlatformReviewComponent
   ],
   imports: [
     BrowserModule,
