@@ -15,6 +15,8 @@ interface Feedback {
 })
 export class PlatformReviewComponent {
 
+  feedback: Feedback = {mood: undefined, input: undefined}
+
   constructor(private matIconReg: MatIconRegistry,
               private domSan: DomSanitizer) { 
                      this.registerMatIcons();
@@ -43,5 +45,23 @@ export class PlatformReviewComponent {
       this.domSan.bypassSecurityTrustResourceUrl('../../assets/FeedbackSmileys/very-happy.svg')
     )
   }
+
+  reviewInputChange(e: any): void {
+    this.feedback.input = e.target.value;
+  }
+
+  chooseMood(mood: string): void {
+    this.feedback.mood = mood;
+  }
+
+  checkIfEverythingIsSet(): boolean {
+    if(this.feedback.input === undefined || this.feedback.mood === undefined) {
+      return false;
+    } 
+
+    return true;
+  }
+
+
 
 }
