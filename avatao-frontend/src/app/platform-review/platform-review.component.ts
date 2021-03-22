@@ -2,19 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
+
+
+interface Feedback {
+  mood?: string,
+  input?: string
+}
 @Component({
   selector: 'app-platform-review',
   templateUrl: './platform-review.component.html',
   styleUrls: ['./platform-review.component.css']
 })
-export class PlatformReviewComponent implements OnInit {
+export class PlatformReviewComponent {
 
   constructor(private matIconReg: MatIconRegistry,
-    private domSan: DomSanitizer) { }
+              private domSan: DomSanitizer) { 
+                     this.registerMatIcons();
+              }
 
-  ngOnInit(): void {
-
-  }
 
 
   registerMatIcons(): void {
