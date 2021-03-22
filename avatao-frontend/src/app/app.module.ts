@@ -10,6 +10,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { PlatformReviewComponent } from './platform-review/platform-review.component';
 
+import {MatCardModule} from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +28,11 @@ import { PlatformReviewComponent } from './platform-review/platform-review.compo
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
-    
+    MatCardModule,
+    MatInputModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
