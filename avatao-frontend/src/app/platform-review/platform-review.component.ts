@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ApiClientService } from '../api-client.service';
 import { NotifierService } from '../notifier.service';
 import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
 
 
 interface Feedback {
-  mood?: string,
-  input?: string
+  mood: string,
+  input: string,
+  score: number
 }
 @Component({
   selector: 'app-platform-review',
@@ -18,12 +20,13 @@ interface Feedback {
 })
 export class PlatformReviewComponent {
 
-  feedback: Feedback = {mood: undefined, input: undefined}
+  feedback: Feedback = {mood: "", input: "", score: 0}
 
   constructor(private matIconReg: MatIconRegistry,
               private domSan: DomSanitizer,
               private dialogRef: MatDialogRef<ShowmodalComponent>,
-              private notifierService: NotifierService) { 
+              private notifierService: NotifierService,
+              private apiClient: ApiClientService) { 
                      this.registerMatIcons();
               }
 
@@ -55,12 +58,13 @@ export class PlatformReviewComponent {
     this.feedback.input = e.target.value;
   }
 
-  chooseMood(mood: string): void {
+  chooseMood(mood: string, score: number): void {
     this.feedback.mood = mood;
+    this.feedback.score = score;
   }
 
   checkIfEverythingIsSet(): boolean {
-    if(this.feedback.input === undefined || this.feedback.mood === undefined) {
+    if(this.feedback.input === "" || this.feedback.mood === "" || this.feedback.score === 0) {
       return false;
     } 
 
@@ -70,6 +74,15 @@ export class PlatformReviewComponent {
   onSubmit(): void{
     if(this.checkIfEverythingIsSet()) {
       this.notifierService.showNotification('The feedback is sent!', 'Nice!');
+      this.apiClient.postNewPlatformReview(this.feedback).subscribe(
+        resp => {
+          this.notifierService.showNotification('The form was submitted!', 'Nice!');
+        },
+        error => {
+          this.notifierService.showNotification('The form could not be sent :(', 'Ohh.')
+        }
+      )
+
     } else {
       this.notifierService.showNotification('Please fill out the whole form!', 'Got it!');
     }
