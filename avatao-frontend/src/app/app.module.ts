@@ -8,11 +8,21 @@ import { ShowmodalComponent } from './showmodal/showmodal.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { PlatformReviewComponent } from './platform-review/platform-review.component';
+
+import {MatCardModule} from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShowmodalComponent
+    ShowmodalComponent,
+    PlatformReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +30,13 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
-    
+    MatCardModule,
+    MatInputModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

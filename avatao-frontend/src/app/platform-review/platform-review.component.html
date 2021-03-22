@@ -1,0 +1,41 @@
+<div class="dialogContainer">
+    <mat-dialog-content>
+        <div class="formTitle">
+            How would you rate your experience using Avatao?
+        </div>
+        <div class="emojiContainer">
+            <mat-grid-list cols="4" rowHeight="1:1">
+                <mat-grid-tile>
+                    <mat-icon class="face" svgIcon="very-sad" (click)="chooseMood('very-sad', 1)" ></mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-icon class="face" svgIcon="neutral" (click)="chooseMood('neutral', 2)"></mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-icon class="face" svgIcon="happy" (click)="chooseMood('happy', 3)"></mat-icon>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-icon class="face" svgIcon="very-happy" (click)="chooseMood('very-happy', 4)"></mat-icon>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+
+        <div class="textInputContainer">
+            <div>
+                <label class="questionLabel">Do you have something specific in mind?</label>
+                <label class="counterLabel">{{feedback.input? feedback.input.length : 0}}/140 characters</label>
+            </div>
+            <textarea class="inputArea" maxlength="140" #inputArea (input)="reviewInputChange($event)"></textarea>
+        </div>
+        
+        <div class="flex">
+            <div class="flex-item">
+                <button mat-flat-button class="logoutButton" (click)="onSubmit()">Log Out</button>
+            </div>
+            <div class="flex-item">
+                <button mat-flat-button class="dismissButton" (click)="onDismiss()">Dismiss</button>
+            </div>
+        </div>
+        
+        </mat-dialog-content>
+</div>

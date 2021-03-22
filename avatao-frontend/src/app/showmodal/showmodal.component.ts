@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { PlatformReviewComponent } from '../platform-review/platform-review.component';
 
 @Component({
   selector: 'app-showmodal',
@@ -16,12 +17,12 @@ export class ShowmodalComponent {
     const  dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
+    //dialogConfig.autoFocus = true;
     dialogConfig.backdropClass = 'backdropBackground';
 
 
     if(modalType === "PlatformReview") {
-      //this.dialog.open("")
+      this.dialog.open(PlatformReviewComponent, dialogConfig);
     }
   }
 
