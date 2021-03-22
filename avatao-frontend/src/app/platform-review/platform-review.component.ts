@@ -65,6 +65,8 @@ export class PlatformReviewComponent {
     return true;
   }
 
-
+  onDismiss(): void {
+    this.dialogRef.close();
+  }
 
 }
