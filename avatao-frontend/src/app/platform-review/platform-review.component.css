@@ -1,0 +1,91 @@
+.dialogContainer {
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.formTitle {
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 23px;
+    font-weight: bolder;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    text-align: center;
+    color: #273648;
+}
+
+.emojiContainer {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.face {
+    width: 56px;
+  height: 56px;
+  flex-grow: 0;
+  cursor: pointer;
+}
+
+.textInputContainer {
+    width: 90%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.flex-item + .flex-item {
+    margin-left: 5%;
+}
+
+.dismissButton {
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 14px;
+    border-radius: 21px;
+    border: solid 1.5px #94a6b9;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.86;
+    letter-spacing: normal;
+    color: #94a6b9;
+    background-color: #ffffff;
+    text-align: center;
+    display: inline-block;
+}
+
+.logoutButton {
+    background-color: #eb5751;
+    border-radius: 21px;
+    color: #ffffff;
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.86;
+    letter-spacing: normal;
+    text-align: center;
+    display: inline-block;
+    
+}
+
+.questionLabel {
+    text-align: left;
+    float: left;
+    font-family: 'Open Sans Regular', sans-serif;
+}
+
+.counterLabel {
+    text-align: right;
+    float: right;
+    font-family: 'Open Sans Regular', sans-serif;
+}
