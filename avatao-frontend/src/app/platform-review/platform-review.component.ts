@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NotifierService } from '../notifier.service';
 import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
 
@@ -21,7 +22,8 @@ export class PlatformReviewComponent {
 
   constructor(private matIconReg: MatIconRegistry,
               private domSan: DomSanitizer,
-              private dialogRef: MatDialogRef<ShowmodalComponent>) { 
+              private dialogRef: MatDialogRef<ShowmodalComponent>,
+              private notifierService: NotifierService) { 
                      this.registerMatIcons();
               }
 
@@ -63,6 +65,14 @@ export class PlatformReviewComponent {
     } 
 
     return true;
+  }
+
+  onSubmit(): void{
+    if(this.checkIfEverythingIsSet()) {
+      this.notifierService.showNotification('The feedback is sent!', 'Nice!');
+    } else {
+      this.notifierService.showNotification('Please fill out the whole form!', 'Got it!');
+    }
   }
 
   onDismiss(): void {
