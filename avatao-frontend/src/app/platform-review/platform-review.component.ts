@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
 
 
@@ -18,7 +20,8 @@ export class PlatformReviewComponent {
   feedback: Feedback = {mood: undefined, input: undefined}
 
   constructor(private matIconReg: MatIconRegistry,
-              private domSan: DomSanitizer) { 
+              private domSan: DomSanitizer,
+              private dialogRef: MatDialogRef<ShowmodalComponent>) { 
                      this.registerMatIcons();
               }
 
