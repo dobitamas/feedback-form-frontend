@@ -23,7 +23,7 @@
         <div class="textInputContainer">
             <div>
                 <label class="questionLabel">Do you have something specific in mind?</label>
-                <label class="counterLabel">{{feedback.input?.length}}/140 characters</label>
+                <label class="counterLabel">{{feedback.input? feedback.input.length : 0}}/140 characters</label>
             </div>
             <textarea class="inputArea" maxlength="140" #inputArea (input)="reviewInputChange($event)"></textarea>
         </div>
