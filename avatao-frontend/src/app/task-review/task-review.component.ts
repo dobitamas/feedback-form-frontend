@@ -30,9 +30,9 @@ export class TaskReviewComponent implements OnInit {
 
   confidenceButtons: Feedback_Button[] = [];  
 
-  structureReview: Feedback_Choice = {input: "", button: this.structureButtons[1]};
+  structureReview: Feedback_Choice;
 
-  confidenceReview: Feedback_Choice = {input:"", button: this.confidenceButtons[2]}
+  confidenceReview: Feedback_Choice;
 
   
   
@@ -41,10 +41,13 @@ export class TaskReviewComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<ShowmodalComponent>,
               private notifierService: NotifierService,
               private apiClient: ApiClientService) {
+                this.seedButtons()
+                this.structureReview = {} as Feedback_Choice;
+                this.confidenceReview = {input: "", button: this.confidenceButtons[2]} as Feedback_Choice;
    }
 
   ngOnInit(): void {
-    this.seedButtons();
+    /* this.seedButtons(); */
   }
 
 
@@ -63,7 +66,7 @@ export class TaskReviewComponent implements OnInit {
         status: false,
         score: 3
       }
-    ];
+    ] as Feedback_Button[];
 
     this.confidenceButtons = [
       {
@@ -86,7 +89,7 @@ export class TaskReviewComponent implements OnInit {
         status: false,
         score: 4
       }
-    ];
+    ] as Feedback_Button[];
 
   }
 
@@ -138,11 +141,9 @@ export class TaskReviewComponent implements OnInit {
       this.notifierService.showNotification('The feedback is sent!', 'Nice!');
       this.apiClient.postNewTaskReview(feedBack).subscribe(
         resp => {
-          console.log("RESP: ",  resp)
           this.notifierService.showNotification('The form was submitted!', 'Nice!');
         },
         error => {
-          console.log("ERR: ", error)
           this.notifierService.showNotification('The form could not be sent :(', 'Ohh.')
         }
       )
@@ -154,8 +155,10 @@ export class TaskReviewComponent implements OnInit {
 
   checkIfEverythingIsSet(): boolean {
     if(this.structureReview.button === undefined || this.structureReview.input === "") {
+      console.log(this.structureReview)
       return false;
     } else if(this.confidenceReview.button === undefined || this.confidenceReview.input === "") {
+      console.log("CONF: ", this.confidenceReview.button)
       return false;
     }
 
