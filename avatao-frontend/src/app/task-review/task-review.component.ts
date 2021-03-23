@@ -15,6 +15,11 @@ interface Feedback_Choice {
   button?: Feedback_Button
 }
 
+interface Task_Feedback {
+  structureReview: {input: string, score: number},
+  confidenceReview: {input: string, score: number}
+}
+
 @Component({
   selector: 'app-task-review',
   templateUrl: './task-review.component.html',
