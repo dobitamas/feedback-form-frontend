@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ApiClientService } from '../api-client.service';
+import { FormDataService } from '../form-data.service';
 import { NotifierService } from '../notifier.service';
 import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
 
 
 interface Feedback {
-  mood: string,
   input: string,
   score: number
 }
+
+interface Mood_Button {
+  text: string, /* Text means SVGICON here */
+  status: boolean,
+  score : number
+}
+
 @Component({
   selector: 'app-platform-review',
   templateUrl: './platform-review.component.html',
@@ -20,51 +25,36 @@ interface Feedback {
 })
 export class PlatformReviewComponent {
 
-  feedback: Feedback = {mood: "", input: "", score: 0}
+  feedback: Feedback = { input: "", score: 0 }
 
-  constructor(private matIconReg: MatIconRegistry,
-              private domSan: DomSanitizer,
-              private dialogRef: MatDialogRef<ShowmodalComponent>,
+  moodButtons: Mood_Button[] = [];
+
+  constructor(private dialogRef: MatDialogRef<ShowmodalComponent>,
               private notifierService: NotifierService,
-              private apiClient: ApiClientService) { 
-                     this.registerMatIcons();
+              private apiClient: ApiClientService,
+              private formService: FormDataService) { 
+                this.formService.registerMatIcons();
+                this.moodButtons = formService.createMoodButtons();
               }
+  
 
-
-
-  registerMatIcons(): void {
-    this.matIconReg.addSvgIcon(
-      'very-sad',
-      this.domSan.bypassSecurityTrustResourceUrl('../../assets/FeedbackSmileys/very-sad.svg')
-    )
-
-    this.matIconReg.addSvgIcon(
-      'neutral',
-      this.domSan.bypassSecurityTrustResourceUrl('../../assets/FeedbackSmileys/neutral.svg')
-    )
-
-    this.matIconReg.addSvgIcon(
-      'happy',
-      this.domSan.bypassSecurityTrustResourceUrl('../../assets/FeedbackSmileys/happy.svg')
-    )
-
-    this.matIconReg.addSvgIcon(
-      'very-happy',
-      this.domSan.bypassSecurityTrustResourceUrl('../../assets/FeedbackSmileys/very-happy.svg')
-    )
-  }
+  
 
   reviewInputChange(e: any): void {
     this.feedback.input = e.target.value;
   }
 
-  chooseMood(mood: string, score: number): void {
-    this.feedback.mood = mood;
-    this.feedback.score = score;
+  moodChange(index: number): void {
+    this.moodButtons[index].status=!this.moodButtons[index].status;
+    this.moodButtons = this.formService.removeSelection(index, this.moodButtons);
+
+    this.feedback.score = this.moodButtons[index].score;
+
+    console.log("CHANGED MOOD:", this.moodButtons)
   }
 
   checkIfEverythingIsSet(): boolean {
-    if(this.feedback.input === "" || this.feedback.mood === "" || this.feedback.score === 0) {
+    if(this.feedback.input === "" || this.feedback.score === 0) {
       return false;
     } 
 
@@ -73,7 +63,6 @@ export class PlatformReviewComponent {
 
   onSubmit(): void{
     if(this.checkIfEverythingIsSet()) {
-      this.notifierService.showNotification('The feedback is sent!', 'Nice!');
       this.apiClient.postNewPlatformReview(this.feedback).subscribe(
         resp => {
           this.notifierService.showNotification('The form was submitted!', 'Nice!');

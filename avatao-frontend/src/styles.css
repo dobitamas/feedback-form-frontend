@@ -4,7 +4,7 @@ html, body { height: 100%; }
 body { margin: 0; }
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 
 /* For creating that blurry background behind modals */
@@ -40,5 +40,10 @@ body { margin: 0; }
     resize: none;
     outline: none;
     animation: none;
+}
+
+.selectedMood {
+    border: solid #eb5751;
+    border-radius: 50%;
 }
 

@@ -5,18 +5,10 @@
         </div>
         <div class="emojiContainer">
             <mat-grid-list cols="4" rowHeight="1:1">
-                <mat-grid-tile>
-                    <mat-icon class="face" svgIcon="very-sad" (click)="chooseMood('very-sad', 1)" ></mat-icon>
+                <mat-grid-tile *ngFor="let button of moodButtons; let i = index">
+                    <mat-icon class="face" svgIcon="{{button.text}}"  (click)="moodChange(i)" [ngClass]="button.status ? 'selectedMood' : ''"></mat-icon>
                 </mat-grid-tile>
-                <mat-grid-tile>
-                    <mat-icon class="face" svgIcon="neutral" (click)="chooseMood('neutral', 2)"></mat-icon>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <mat-icon class="face" svgIcon="happy" (click)="chooseMood('happy', 3)"></mat-icon>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <mat-icon class="face" svgIcon="very-happy" (click)="chooseMood('very-happy', 4)"></mat-icon>
-                </mat-grid-tile>
+                
             </mat-grid-list>
         </div>
 

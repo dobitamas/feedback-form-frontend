@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 interface Platform_Feedback {
-  mood: string,
   input: string,
   score: number
 }
