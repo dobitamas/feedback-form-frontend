@@ -11,8 +11,8 @@ interface Feedback_Button {
 }
 
 interface Feedback_Choice {
-  input?: string,
-  button?: Feedback_Button
+  input: string,
+  button: Feedback_Button
 }
 
 interface Task_Feedback {
@@ -30,9 +30,13 @@ export class TaskReviewComponent implements OnInit {
 
   confidenceButtons: Feedback_Button[] = [];  
 
-  structureReview: Feedback_Choice = {input: "", button: undefined};
+  structureReview: Feedback_Choice = {input: "", button: this.structureButtons[1]};
 
   confidenceReview: Feedback_Choice = {input:"", button: this.confidenceButtons[2]}
+
+  
+  
+
 
   constructor(private dialogRef: MatDialogRef<ShowmodalComponent>,
               private notifierService: NotifierService,
@@ -123,13 +127,24 @@ export class TaskReviewComponent implements OnInit {
 
 
 
-  onDismiss(){
+  onDismiss(): void{
     this.dialogRef.close();
   }
 
-  onSubmit() {
+  onSubmit(): void{
     if(this.checkIfEverythingIsSet()) {
+      let feedBack: Task_Feedback = this.createFeedback();
+
       this.notifierService.showNotification('The feedback is sent!', 'Nice!');
+      this.apiClient.postNewTaskReview(feedBack).subscribe(
+        resp => {
+          this.notifierService.showNotification('The form was submitted!', 'Nice!');
+        },
+        error => {
+          this.notifierService.showNotification('The form could not be sent :(', 'Ohh.')
+        }
+      )
+
     } else {
       this.notifierService.showNotification('Please fill out the whole form!', 'Got it!');
     }
@@ -143,6 +158,13 @@ export class TaskReviewComponent implements OnInit {
     }
 
     return true;
+  }
+
+  createFeedback(): Task_Feedback {
+    return {
+      structureReview: {input: this.structureReview.input, score: this.structureReview.button.score},
+      confidenceReview: {input: this.confidenceReview.input, score: this.confidenceReview.button.score}
+    }
   }
 
 }
