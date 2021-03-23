@@ -138,9 +138,11 @@ export class TaskReviewComponent implements OnInit {
       this.notifierService.showNotification('The feedback is sent!', 'Nice!');
       this.apiClient.postNewTaskReview(feedBack).subscribe(
         resp => {
+          console.log("RESP: ",  resp)
           this.notifierService.showNotification('The form was submitted!', 'Nice!');
         },
         error => {
+          console.log("ERR: ", error)
           this.notifierService.showNotification('The form could not be sent :(', 'Ohh.')
         }
       )

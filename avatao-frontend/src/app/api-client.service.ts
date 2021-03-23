@@ -70,10 +70,10 @@ export class ApiClientService {
 
     this.body = {
       "data": {
-      "platform_ux": {
-        "feedback": feedback.input,
-        "score": feedback.score
-      },
+        "platform_ux": {
+          "feedback": feedback.input,
+          "score": feedback.score
+        },
         "url": this.router.url,
       "is_support": false
       }
@@ -82,7 +82,7 @@ export class ApiClientService {
     return this.httpClient.post(this.baseUrl, this.body, { headers: this.httpHeaders } )
   }
 
-  postNewTaskReview(feedback?: Task_Feedback): Observable<any> {
+  postNewTaskReview(feedback: Task_Feedback): Observable<any> {
     this.httpHeaders = new HttpHeaders({
       Authorization: 'Bearer ' + this.jwt,
     })
@@ -101,7 +101,8 @@ export class ApiClientService {
         },
         "url": this.router.url,
         "is_support": false
-      }
+      },
+      "challenge_id": "ca92d318-e0b5-4ec4-aff7-9d265d7e22bb"
     }
 
     return this.httpClient.post(this.baseUrl, this.body, { headers: this.httpHeaders })
