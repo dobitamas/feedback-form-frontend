@@ -1,0 +1,94 @@
+.formTitle {
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 21px;
+    font-weight: bolder;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.67;
+    letter-spacing: normal;
+    text-align: center;
+    color: #273648;
+    margin: 10px;
+}
+
+.textInputContainer {
+    width: 90%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.questionLabel {
+    text-align: left;
+    float: left;
+    font-family: 'Open Sans Regular', sans-serif;
+}
+
+.counterLabel {
+    text-align: right;
+    float: right;
+    font-family: 'Open Sans Regular', sans-serif;
+}
+
+.flatGreyButton {
+    border-radius: 21px;
+    border: solid 1.5px #94a6b9;
+    font-family: 'Open Sans Bold',sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 26px;
+    letter-spacing: normal;
+    text-align: center;
+    color: #94a6b9;
+    min-width: 80%;
+    
+}
+
+.flex {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.flex-item + .flex-item{
+    margin-left: 5%;
+}
+
+.logoutButton {
+    background-color: #77a2ff;
+    border-radius: 21px;
+    color: #ffffff;
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.86;
+    letter-spacing: normal;
+    text-align: center;
+    display: inline-block;
+}
+
+
+.dismissButton {
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 14px;
+    border-radius: 21px;
+    border: solid 1.5px #94a6b9;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 26px;
+    letter-spacing: normal;
+    color: #94a6b9;
+    background-color: #ffffff;
+    text-align: center;
+    display: inline-block;
+}
+
+.buttonContainer {
+    flex-direction: row;
+}

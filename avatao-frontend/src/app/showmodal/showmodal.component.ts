@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PlatformReviewComponent } from '../platform-review/platform-review.component';
+import { TaskReviewComponent } from '../task-review/task-review.component';
 
 @Component({
   selector: 'app-showmodal',
@@ -22,7 +23,13 @@ export class ShowmodalComponent {
 
 
     if(modalType === "PlatformReview") {
+
       this.dialog.open(PlatformReviewComponent, dialogConfig);
+
+    } else if(modalType === "TaskReview") {
+
+      this.dialog.open(TaskReviewComponent, dialogConfig);
+      
     }
   }
 

@@ -1,0 +1,61 @@
+<div class="dialogContainer">
+    <mat-dialog-content>
+        <div class="formTitle">
+            How would you rate this task in terms of structure?
+        </div>
+
+        <div class="buttonContainer">
+            <mat-grid-list cols="{{structureButtons.length}}" gutterSize="5px" rowHeight="100px">
+                <mat-grid-tile *ngFor="let button of structureButtons; let i = index">
+                    <button class="flatGreyButton" mat-flat-button  [color]="button.status ? 'primary' : ''" (click)="changeStructureButtons(i)">{{button.text}}</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+
+        <div class="textInputContainer">
+            <div>
+                <label class="questionLabel">We'd love to hear your toughts</label>
+                <label class="counterLabel">{{structureReview.input? structureReview.input.length : 0}}/140 characters</label>
+            </div>
+            <textarea class="inputArea" maxlength="140" #inputArea (input)="structureInputChange($event)"></textarea>
+        </div>
+
+        
+
+        <div class="formTitle">
+            How confident are you applying what you have learned?
+        </div>
+
+        <div class="buttonContainer">
+            <mat-grid-list cols="{{confidenceButtons.length}}" rowHeight="100px" >
+                <mat-grid-tile *ngFor="let button of confidenceButtons; let i = index">
+                    <button class="flatGreyButton" mat-flat-button  [color]="button.status ? 'primary' : ''" (click)="changeConfidenceButtons(i)">{{button.text}}</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+
+
+        <div class="textInputContainer">
+            <div>
+                <label class="questionLabel">We'd love to hear your toughts</label>
+                <label class="counterLabel">{{confidenceReview.input? confidenceReview.input.length : 0}}/140 characters</label>
+            </div>
+            <textarea class="inputArea" maxlength="140" #inputArea (input)="confidenceInputChange($event)"></textarea>
+        </div>
+
+        
+
+        <div class="flex">
+            <div class="flex-item">
+                <button mat-flat-button class="logoutButton" (click)="onSubmit()">Confirm</button>
+            </div>
+            <div class="flex-item">
+                <button mat-flat-button class="dismissButton" (click)="onDismiss()">Dismiss</button>
+            </div>
+        </div>
+
+
+
+
+    </mat-dialog-content>
+</div>
