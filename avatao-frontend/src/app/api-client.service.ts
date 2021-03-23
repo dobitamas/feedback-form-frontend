@@ -28,6 +28,11 @@ interface PlatformReviewRequest {
 export class ApiClientService {
 
   baseUrl: string = "http://localhost:5000/feedbacks/";
+  /*
+
+    I would not store this JWT here, localstorage or cookie is a better option 
+    
+  */
   jwt: string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSJ9.VzqrIt7rU5JEQzVsgk-hxGr56VphfQF9h5KnpOhyYvk";
 
   constructor(private httpClient: HttpClient,
