@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ApiClientService } from '../api-client.service';
+import { FormDataService } from '../form-data.service';
 import { NotifierService } from '../notifier.service';
 import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
@@ -18,7 +19,7 @@ interface Feedback {
   templateUrl: './platform-review.component.html',
   styleUrls: ['./platform-review.component.css']
 })
-export class PlatformReviewComponent {
+export class PlatformReviewComponent implements OnInit {
 
   feedback: Feedback = {mood: "", input: "", score: 0}
 
@@ -26,12 +27,16 @@ export class PlatformReviewComponent {
               private domSan: DomSanitizer,
               private dialogRef: MatDialogRef<ShowmodalComponent>,
               private notifierService: NotifierService,
-              private apiClient: ApiClientService) { 
-                     this.registerMatIcons();
+              private apiClient: ApiClientService,
+              private formService: FormDataService) { 
+                this.formService.registerMatIcons();
               }
+  
+  ngOnInit(): void {
+    this.formService.registerMatIcons();
+  }
 
-
-
+              /*
   registerMatIcons(): void {
     this.matIconReg.addSvgIcon(
       'very-sad',
@@ -53,6 +58,7 @@ export class PlatformReviewComponent {
       this.domSan.bypassSecurityTrustResourceUrl('../../assets/FeedbackSmileys/very-happy.svg')
     )
   }
+  */
 
   reviewInputChange(e: any): void {
     this.feedback.input = e.target.value;
