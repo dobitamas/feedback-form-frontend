@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ApiClientService } from '../api-client.service';
+import { FormDataService } from '../form-data.service';
 import { NotifierService } from '../notifier.service';
 import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
@@ -25,7 +26,7 @@ interface Task_Feedback {
   templateUrl: './task-review.component.html',
   styleUrls: ['./task-review.component.css']
 })
-export class TaskReviewComponent implements OnInit {
+export class TaskReviewComponent {
   structureButtons: Feedback_Button[] = [];
 
   confidenceButtons: Feedback_Button[] = [];  
@@ -34,91 +35,44 @@ export class TaskReviewComponent implements OnInit {
 
   confidenceReview: Feedback_Choice;
 
+
+
   
   
 
 
   constructor(private dialogRef: MatDialogRef<ShowmodalComponent>,
               private notifierService: NotifierService,
-              private apiClient: ApiClientService) {
+              private apiClient: ApiClientService,
+              private formService: FormDataService) {
                 this.seedButtons()
                 this.structureReview = {} as Feedback_Choice;
                 this.confidenceReview = {input: "", button: this.confidenceButtons[2]} as Feedback_Choice;
    }
 
-  ngOnInit(): void {
-    /* this.seedButtons(); */
-  }
+  
 
 
   seedButtons(): void {
-    this.structureButtons = [
-      {
-        text: "Confusing",
-        status: false,
-        score: 1
-      }, {
-        text: "Easy-to-follow",
-        status: false,
-        score: 2
-      }, {
-        text: "Logical",
-        status: false,
-        score: 3
-      }
-    ] as Feedback_Button[];
-
-    this.confidenceButtons = [
-      {
-        text:"Not at all",
-        status: false,
-        score: 1
-      },
-      {
-        text: "Not sure",
-        status: false,
-        score: 2
-      },
-      {
-        text: "Probably okay",
-        status: true,
-        score: 3
-      },
-      {
-        text: "Full confidence",
-        status: false,
-        score: 4
-      }
-    ] as Feedback_Button[];
-
+    this.structureButtons = this.formService.createStructureButtons();
+    this.confidenceButtons = this.formService.createConfidenceButtons(); 
   }
 
-  changeStructureButtons(index:number){
+  structureButtonsChange(index:number){
     this.structureButtons[index].status=!this.structureButtons[index].status;
-    this.structureButtons = this.removeSelection(index, this.structureButtons);
+    this.structureButtons = this.formService.removeSelection(index, this.structureButtons);
 
     this.structureReview.button = this.structureButtons[index];
 
   }
 
-  changeConfidenceButtons(index: number) {
+  confidenceButtonsChange(index: number) {
     this.confidenceButtons[index].status=!this.confidenceButtons[index].status;
-    this.confidenceButtons = this.removeSelection(index, this.confidenceButtons);
+    this.confidenceButtons = this.formService.removeSelection(index, this.confidenceButtons)
 
     this.confidenceReview.button = this.confidenceButtons[index];
   }
 
-  removeSelection(index:number, list:any) {
-    for(let i = 0; i < list.length; i++) {
-      if(i === index) {
-        continue;
-      }
-
-      list[i].status = false;
-    }
-
-    return list;
-  }
 
   structureInputChange(e: any) {
     this.structureReview.input = e.target.value;
@@ -138,7 +92,6 @@ export class TaskReviewComponent implements OnInit {
     if(this.checkIfEverythingIsSet()) {
       let feedBack: Task_Feedback = this.createFeedback();
 
-      this.notifierService.showNotification('The feedback is sent!', 'Nice!');
       this.apiClient.postNewTaskReview(feedBack).subscribe(
         resp => {
           this.notifierService.showNotification('The form was submitted!', 'Nice!');

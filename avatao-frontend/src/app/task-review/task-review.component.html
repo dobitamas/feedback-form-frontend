@@ -7,7 +7,7 @@
         <div class="buttonContainer">
             <mat-grid-list cols="{{structureButtons.length}}" gutterSize="5px" rowHeight="100px">
                 <mat-grid-tile *ngFor="let button of structureButtons; let i = index">
-                    <button class="flatGreyButton" mat-flat-button  [color]="button.status ? 'primary' : ''" (click)="changeStructureButtons(i)">{{button.text}}</button>
+                    <button class="flatGreyButton" mat-flat-button  [color]="button.status ? 'primary' : ''" (click)="structureButtonsChange(i)">{{button.text}}</button>
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
@@ -29,7 +29,7 @@
         <div class="buttonContainer">
             <mat-grid-list cols="{{confidenceButtons.length}}" rowHeight="100px" >
                 <mat-grid-tile *ngFor="let button of confidenceButtons; let i = index">
-                    <button class="flatGreyButton" mat-flat-button  [color]="button.status ? 'primary' : ''" (click)="changeConfidenceButtons(i)">{{button.text}}</button>
+                    <button class="flatGreyButton" mat-flat-button  [color]="button.status ? 'primary' : ''" (click)="confidenceButtonsChange(i)">{{button.text}}</button>
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
