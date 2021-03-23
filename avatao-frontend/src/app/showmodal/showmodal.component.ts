@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PlatformReviewComponent } from '../platform-review/platform-review.component';
 import { TaskReviewComponent } from '../task-review/task-review.component';
@@ -12,9 +12,12 @@ export class ShowmodalComponent {
 
   constructor(private dialog: MatDialog) { }
 
+
+  @Input()
+  formToRender: string = "";
   
 
-  onCreateModal(modalType:'PlatformReview' | 'TaskReview') {
+  createModal() {
     const  dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
@@ -22,11 +25,11 @@ export class ShowmodalComponent {
     dialogConfig.backdropClass = 'backdropBackground';
 
 
-    if(modalType === "PlatformReview") {
+    if(this.formToRender === "PlatformReview") {
 
       this.dialog.open(PlatformReviewComponent, dialogConfig);
 
-    } else if(modalType === "TaskReview") {
+    } else if(this.formToRender === "TaskReview") {
 
       this.dialog.open(TaskReviewComponent, dialogConfig);
       
