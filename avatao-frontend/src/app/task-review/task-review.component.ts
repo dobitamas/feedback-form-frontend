@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ApiClientService } from '../api-client.service';
 import { NotifierService } from '../notifier.service';
 import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
@@ -29,7 +30,8 @@ export class TaskReviewComponent implements OnInit {
   confidenceReview: Feedback_Choice = {input:"", button: this.confidenceButtons[2]}
 
   constructor(private dialogRef: MatDialogRef<ShowmodalComponent>,
-              private notifierService: NotifierService) {
+              private notifierService: NotifierService,
+              private apiClient: ApiClientService) {
    }
 
   ngOnInit(): void {

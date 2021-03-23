@@ -21,6 +21,21 @@ interface PlatformReviewRequest {
   }
 }
 
+interface TaskReviewRequest {
+  data: {
+    user_effort: {
+      feedback: string,
+      score: number
+    },
+    educational_value: {
+      feedback: string,
+      score: number
+    },
+    url: string,
+    is_support: boolean
+  }
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +66,7 @@ export class ApiClientService {
         "score": feedback.score
       },
         "url": this.router.url,
-      "is_support": true
+      "is_support": false
     }
     }
 
