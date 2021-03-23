@@ -17,12 +17,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {HttpClientModule} from '@angular/common/http';
+import { TaskReviewComponent } from './task-review/task-review.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShowmodalComponent,
-    PlatformReviewComponent
+    PlatformReviewComponent,
+    TaskReviewComponent
   ],
   imports: [
     BrowserModule,
