@@ -17,10 +17,13 @@ interface Feedback_Choice {
   styleUrls: ['./task-review.component.css']
 })
 export class TaskReviewComponent implements OnInit {
-  structureButtons?: Feedback_Button[];
+  structureButtons: Feedback_Button[] = [];
 
-  confidenceButtons?: Feedback_Button[];  
+  confidenceButtons: Feedback_Button[] = [];  
 
+  structureReview: Feedback_Choice = {input: "", button: undefined};
+
+  confidenceReview: Feedback_Choice = {input:"", button: this.confidenceButtons[2]}
 
   constructor() {
    }
@@ -70,6 +73,26 @@ export class TaskReviewComponent implements OnInit {
       }
     ];
 
+  }
+
+  changeStructureButtons(index:number){
+    this.structureButtons[index].status=!this.structureButtons[index].status;
+    this.structureButtons = this.removeSelection(index, this.structureButtons);
+
+    this.structureReview.button = this.structureButtons[index];
+
+  }
+
+  removeSelection(index:number, list:any) {
+    for(let i = 0; i < list.length; i++) {
+      if(i === index) {
+        continue;
+      }
+
+      list[i].status = false;
+    }
+
+    return list;
   }
 
 }
