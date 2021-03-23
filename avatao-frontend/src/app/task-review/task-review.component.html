@@ -20,6 +20,20 @@
             <textarea class="inputArea" maxlength="140" #inputArea (input)="structureInputChange($event)"></textarea>
         </div>
 
+        <div class="formTitle">
+            How confident are you applying what you have learned?
+        </div>
+
+        <div class="buttonContainer">
+            <mat-grid-list cols="{{confidenceButtons.length}}" rowHeight="100px" >
+                <mat-grid-tile *ngFor="let button of confidenceButtons; let i = index">
+                    <button class="flatGreyButton" mat-flat-button  [color]="button.status ? 'primary' : ''" (click)="confidenceInputChange(i)">{{button.text}}</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+
+        
+
 
     </mat-dialog-content>
 </div>
