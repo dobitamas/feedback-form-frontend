@@ -11,5 +11,15 @@
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
+
+        <div class="textInputContainer">
+            <div>
+                <label class="questionLabel">We'd love to hear your toughts</label>
+                <label class="counterLabel">{{structureReview.input? structureReview.input.length : 0}}/140 characters</label>
+            </div>
+            <textarea class="inputArea" maxlength="140" #inputArea (input)="structureInputChange($event)"></textarea>
+        </div>
+
+
     </mat-dialog-content>
 </div>

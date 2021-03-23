@@ -95,4 +95,12 @@ export class TaskReviewComponent implements OnInit {
     return list;
   }
 
+  structureInputChange(e: any) {
+    this.structureReview.input = e.target.value;
+  }
+
+  confidenceInputChange(e: any) {
+    this.confidenceReview.input = e.target.value;
+  }
+
 }
