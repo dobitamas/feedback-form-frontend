@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { NotifierService } from '../notifier.service';
+import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
 interface Feedback_Button {
   text: string,
@@ -25,7 +28,8 @@ export class TaskReviewComponent implements OnInit {
 
   confidenceReview: Feedback_Choice = {input:"", button: this.confidenceButtons[2]}
 
-  constructor() {
+  constructor(private dialogRef: MatDialogRef<ShowmodalComponent>,
+              private notifierService: NotifierService) {
    }
 
   ngOnInit(): void {
@@ -83,6 +87,13 @@ export class TaskReviewComponent implements OnInit {
 
   }
 
+  changeConfidenceButtons(index: number) {
+    this.confidenceButtons[index].status=!this.confidenceButtons[index].status;
+    this.confidenceButtons = this.removeSelection(index, this.confidenceButtons);
+
+    this.confidenceReview.button = this.confidenceButtons[index];
+  }
+
   removeSelection(index:number, list:any) {
     for(let i = 0; i < list.length; i++) {
       if(i === index) {
@@ -101,6 +112,30 @@ export class TaskReviewComponent implements OnInit {
 
   confidenceInputChange(e: any) {
     this.confidenceReview.input = e.target.value;
+  }
+
+
+
+  onDismiss(){
+    this.dialogRef.close();
+  }
+
+  onSubmit() {
+    if(this.checkIfEverythingIsSet()) {
+      this.notifierService.showNotification('The feedback is sent!', 'Nice!');
+    } else {
+      this.notifierService.showNotification('Please fill out the whole form!', 'Got it!');
+    }
+  }
+
+  checkIfEverythingIsSet(): boolean {
+    if(this.structureReview.button === undefined || this.structureReview.input === "") {
+      return false;
+    } else if(this.confidenceReview.button === undefined || this.confidenceReview.input === "") {
+      return false;
+    }
+
+    return true;
   }
 
 }
