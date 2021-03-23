@@ -39,7 +39,8 @@ interface Task_Review_Request {
     },
     url: string,
     is_support: boolean
-  }
+  },
+  challenge_id: string
 }
 
 
@@ -77,7 +78,7 @@ export class ApiClientService {
         "url": this.router.url,
       "is_support": false
       }
-    }
+    } as Platform_Review_Request;
 
     return this.httpClient.post(this.baseUrl, this.body, { headers: this.httpHeaders } )
   }
@@ -89,7 +90,7 @@ export class ApiClientService {
 
 
 
-    this.body = {
+    this.body  = {
       "data": {
         "user_effort": {
           "feedback": feedback?.structureReview.input,
@@ -103,7 +104,7 @@ export class ApiClientService {
         "is_support": false
       },
       "challenge_id": "ca92d318-e0b5-4ec4-aff7-9d265d7e22bb"
-    }
+    } as Task_Review_Request;
 
     return this.httpClient.post(this.baseUrl, this.body, { headers: this.httpHeaders })
   }
