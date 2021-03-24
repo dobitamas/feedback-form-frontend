@@ -39,11 +39,7 @@ export class PlatformReviewComponent {
   
 
   
-
-  reviewInputChange(e: any): void {
-    this.feedback.input = e.target.value;
-  }
-
+  
   moodChange(index: number): void {
     this.moodButtons[index].status=!this.moodButtons[index].status;
     this.moodButtons = this.formService.removeSelection(index, this.moodButtons);
