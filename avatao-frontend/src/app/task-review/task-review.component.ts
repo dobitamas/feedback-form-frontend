@@ -74,15 +74,6 @@ export class TaskReviewComponent {
   }
 
 
-  structureInputChange(e: any) {
-    this.structureReview.input = e.target.value;
-  }
-
-  confidenceInputChange(e: any) {
-    this.confidenceReview.input = e.target.value;
-  }
-
-
 
   onDismiss(): void{
     this.dialogRef.close();
