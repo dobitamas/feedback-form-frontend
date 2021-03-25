@@ -21,7 +21,7 @@ export class ShowmodalComponent {
 
 
   // Creates the modal based on the props the parent component passed as formToRender: string
-  createModal() {
+  createModal(): void {
     const  dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = false;
