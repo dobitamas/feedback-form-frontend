@@ -15,10 +15,10 @@ It's my implementation of the 2 forms, which were given in the design templates.
 
 ### Installing
 
-* Clone the prject to a folder
+* Clone the project to a folder
 * Open terminal and type: cd .\avatao-frontend\
 * In the folder(avatao-frontend) run the npm install command
-* Optional: See QuickDocumentation.md 's IMPORTANT part
+* Optional CORS: See QuickDocumentation.md 's IMPORTANT part
 * Open browser and navigate to localhost:4200
 
 
