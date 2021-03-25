@@ -11,7 +11,7 @@ interface Feedback_Button {
   score : number
 }
 
-interface Feedback_Choice {
+interface Review {
   input: string,
   button: Feedback_Button
 }
@@ -31,9 +31,9 @@ export class TaskReviewComponent {
 
   confidenceButtons: Feedback_Button[] = [];  
 
-  structureReview: Feedback_Choice;
+  structureReview: Review;
 
-  confidenceReview: Feedback_Choice;
+  confidenceReview: Review;
 
 
 
@@ -46,8 +46,8 @@ export class TaskReviewComponent {
               private apiClient: ApiClientService,
               private formService: FormDataService) {
                 this.seedButtons()
-                this.structureReview = {} as Feedback_Choice;
-                this.confidenceReview = {input: "", button: this.confidenceButtons[2]} as Feedback_Choice;
+                this.structureReview = {} as Review;
+                this.confidenceReview = {input: "", button: this.confidenceButtons[2]} as Review;
    }
 
   
@@ -71,15 +71,6 @@ export class TaskReviewComponent {
     this.confidenceButtons = this.formService.removeSelection(index, this.confidenceButtons)
 
     this.confidenceReview.button = this.confidenceButtons[index];
-  }
-
-
-  structureInputChange(e: any) {
-    this.structureReview.input = e.target.value;
-  }
-
-  confidenceInputChange(e: any) {
-    this.confidenceReview.input = e.target.value;
   }
 
 
@@ -108,10 +99,8 @@ export class TaskReviewComponent {
 
   checkIfEverythingIsSet(): boolean {
     if(this.structureReview.button === undefined || this.structureReview.input === "") {
-      console.log(this.structureReview)
       return false;
     } else if(this.confidenceReview.button === undefined || this.confidenceReview.input === "") {
-      console.log("CONF: ", this.confidenceReview.button)
       return false;
     }
 
