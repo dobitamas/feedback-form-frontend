@@ -13,10 +13,14 @@ export class ShowmodalComponent {
   constructor(private dialog: MatDialog) { }
 
 
+
+  // Props from parent element: string = PlatformReview | TaskReview 
   @Input()
   formToRender: string = "";
   
 
+
+  // Creates the modal based on the props the parent component passed as formToRender: string
   createModal() {
     const  dialogConfig = new MatDialogConfig();
 

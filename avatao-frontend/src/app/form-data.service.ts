@@ -3,7 +3,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NotifierService } from './notifier.service';
 
-
+// Interface for Feedback Buttons
 interface Feedback_Button {
   text: string,
   status: boolean,
@@ -17,10 +17,17 @@ interface Feedback_Button {
 })
 export class FormDataService {
 
+
   constructor(private domSan: DomSanitizer,
     private matIconReg: MatIconRegistry) { }
 
+    // Registering SvgIcons
 
+    /* 
+
+    I wouldn't use this method as it's a security risk, but I couldn't find/get anything similar to the ones on the webpage 
+
+    */
     registerMatIcons(): void {
       this.matIconReg.addSvgIcon(
         'very-sad',
@@ -43,6 +50,8 @@ export class FormDataService {
       )
     }
 
+
+    // Creating the basic buttons for the Platform Review component
     createMoodButtons(): Feedback_Button[] {
       return [
         {
@@ -65,6 +74,8 @@ export class FormDataService {
       ] as Feedback_Button[];
     }
 
+
+    // Creating the basic buttons (about the structure of the task) for the Task Review component
     createStructureButtons(): Feedback_Button[] {
       return [
         {
@@ -83,6 +94,7 @@ export class FormDataService {
       ] as Feedback_Button[];
     }
 
+    // Creating the basic buttons (about the user's new learnings )
     createConfidenceButtons(): Feedback_Button[] {
       return [
         {
@@ -108,6 +120,8 @@ export class FormDataService {
       ] as Feedback_Button[];  
     }
 
+
+    // Removes selection from a button in a list on an index
     removeSelection(index: number, list: any) {
       for(let i = 0; i < list.length; i++) {
         if(i === index) {

@@ -5,17 +5,21 @@ import { FormDataService } from '../form-data.service';
 import { NotifierService } from '../notifier.service';
 import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
+
+// Interface to store button data on the page
 interface Feedback_Button {
   text: string,
   status: boolean,
   score : number
 }
 
+// Interface to store the input and score of the user
 interface Review {
   input: string,
   button: Feedback_Button
 }
 
+// Interface to pass data to apiClient
 interface Task_Feedback {
   structureReview: {input: string, score: number},
   confidenceReview: {input: string, score: number}
@@ -40,11 +44,12 @@ export class TaskReviewComponent {
   
   
 
-
+  // Seedting buttons in constuctor and initializing the 2 reviews
   constructor(private dialogRef: MatDialogRef<ShowmodalComponent>,
               private notifierService: NotifierService,
               private apiClient: ApiClientService,
               private formService: FormDataService) {
+                
                 this.seedButtons()
                 this.structureReview = {} as Review;
                 this.confidenceReview = {input: "", button: this.confidenceButtons[2]} as Review;
@@ -58,6 +63,7 @@ export class TaskReviewComponent {
     this.confidenceButtons = this.formService.createConfidenceButtons(); 
   }
 
+  // Change the selected button from the options (this is for the first part of the form)
   structureButtonsChange(index:number){
     this.structureButtons[index].status=!this.structureButtons[index].status;
     this.structureButtons = this.formService.removeSelection(index, this.structureButtons);
@@ -66,6 +72,7 @@ export class TaskReviewComponent {
 
   }
 
+  // Change the selected button from the options (this is for the second part of the form)
   confidenceButtonsChange(index: number) {
     this.confidenceButtons[index].status=!this.confidenceButtons[index].status;
     this.confidenceButtons = this.formService.removeSelection(index, this.confidenceButtons)
@@ -79,6 +86,8 @@ export class TaskReviewComponent {
     this.dialogRef.close();
   }
 
+
+  // First checks if every input field is set, so the form is not invalid. Gives graphical feedback about the form submission
   onSubmit(): void{
     if(this.checkIfEverythingIsSet()) {
       let feedBack: Task_Feedback = this.createFeedback();
@@ -108,11 +117,13 @@ export class TaskReviewComponent {
     return true;
   }
 
+
+  // Create Task_Feedback object 
   createFeedback(): Task_Feedback {
     return {
       structureReview: {input: this.structureReview.input, score: this.structureReview.button.score},
       confidenceReview: {input: this.confidenceReview.input, score: this.confidenceReview.button.score}
-    }
+    } as Task_Feedback;
   }
 
 }

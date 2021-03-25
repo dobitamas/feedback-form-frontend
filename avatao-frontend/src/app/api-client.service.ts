@@ -2,17 +2,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
+// Feedback object for the PlatformReview
 interface Platform_Feedback {
   input: string,
   score: number
 }
 
+// Feedback object for the TaskReview
 interface Task_Feedback {
   structureReview: {input: string, score: number},
   confidenceReview: {input: string, score: number}
 }
 
 
+// Request object to help send data
 interface Platform_Review_Request {
   data:  {
     platform_ux:  {
@@ -24,6 +28,7 @@ interface Platform_Review_Request {
   }
 }
 
+// Request object to help send data
 interface Task_Review_Request {
   data: {
     user_effort: {
@@ -59,6 +64,8 @@ export class ApiClientService {
   body?: Object = undefined;
 
   constructor(private httpClient: HttpClient) { }
+
+
 
   postNewPlatformReview(feedback: Platform_Feedback): Observable<any> {
     this.httpHeaders = new HttpHeaders({
