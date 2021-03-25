@@ -46,7 +46,6 @@ export class PlatformReviewComponent {
 
     this.feedback.score = this.moodButtons[index].score;
 
-    console.log("CHANGED MOOD:", this.moodButtons)
   }
 
   checkIfEverythingIsSet(): boolean {
