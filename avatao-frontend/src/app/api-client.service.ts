@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 
 interface Platform_Feedback {
   input: string,
@@ -57,10 +55,10 @@ export class ApiClientService {
   jwt: string = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSJ9.VzqrIt7rU5JEQzVsgk-hxGr56VphfQF9h5KnpOhyYvk";
 
   httpHeaders?: HttpHeaders = undefined;
+
   body?: Object = undefined;
 
-  constructor(private httpClient: HttpClient,
-              private router: Router) { }
+  constructor(private httpClient: HttpClient) { }
 
   postNewPlatformReview(feedback: Platform_Feedback): Observable<any> {
     this.httpHeaders = new HttpHeaders({
@@ -74,7 +72,7 @@ export class ApiClientService {
           "feedback": feedback.input,
           "score": feedback.score
         },
-        "url": this.router.url,
+        "url": window.location.href,
       "is_support": false
       }
     } as Platform_Review_Request;
@@ -99,7 +97,7 @@ export class ApiClientService {
           "feedback": feedback?.confidenceReview.input,
           "score": feedback?.confidenceReview.score
         },
-        "url": this.router.url,
+        "url": window.location.href,
         "is_support": false
       },
       "challenge_id": "ca92d318-e0b5-4ec4-aff7-9d265d7e22bb"

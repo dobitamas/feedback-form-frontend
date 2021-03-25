@@ -86,6 +86,7 @@ export class TaskReviewComponent {
       this.apiClient.postNewTaskReview(feedBack).subscribe(
         resp => {
           this.notifierService.showNotification('The form was submitted!', 'Nice!');
+          this.dialogRef.close();
         },
         error => {
           this.notifierService.showNotification('The form could not be sent :(', 'Ohh.')
