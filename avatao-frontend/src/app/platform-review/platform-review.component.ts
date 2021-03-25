@@ -6,12 +6,13 @@ import { NotifierService } from '../notifier.service';
 import { ShowmodalComponent } from '../showmodal/showmodal.component';
 
 
-
+// Interface for Feedback of the user
 interface Feedback {
   input: string,
   score: number
 }
 
+// Interface for the buttons
 interface Mood_Button {
   text: string, /* Text means SVGICON here */
   status: boolean,
@@ -39,7 +40,7 @@ export class PlatformReviewComponent {
   
 
   
-  
+  // Changes mood also clearing old selection and set new
   moodChange(index: number): void {
     this.moodButtons[index].status=!this.moodButtons[index].status;
     this.moodButtons = this.formService.removeSelection(index, this.moodButtons);
@@ -48,6 +49,8 @@ export class PlatformReviewComponent {
 
   }
 
+
+  // Checks if everything is set in the feedback object
   checkIfEverythingIsSet(): boolean {
     if(this.feedback.input === "" || this.feedback.score === 0) {
       return false;
@@ -56,6 +59,7 @@ export class PlatformReviewComponent {
     return true;
   }
 
+  // Submits the form with graphical feedback about form
   onSubmit(): void{
     if(this.checkIfEverythingIsSet()) {
       this.apiClient.postNewPlatformReview(this.feedback).subscribe(
