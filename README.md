@@ -8,18 +8,18 @@ It's my implementation of the 2 forms, which were given in the design templates.
 
 
 ## Getting Started
-
 ### Dependencies
 
--Angular
+- Angular
 
 ### Installing
 
-* Clone the project to a folder
-* Open terminal and type: cd .\avatao-frontend\
-* In the folder(avatao-frontend) run the npm install command
-* Optional CORS: See QuickDocumentation.md 's IMPORTANT part
-* Open browser and navigate to localhost:4200
+* Clone the project to a folder.
+* Open terminal and type: ``` cd .\avatao-frontend\ ``` .
+* In the folder(avatao-frontend) run the ``` npm install ``` command.
+* After every NPM dependency is installed, run the ``` npm start ``` command!
+* Optional CORS: See QuickDocumentation.md 's IMPORTANT part.
+* Open browser and navigate to localhost:4200 .
 
 
 
