@@ -17,7 +17,7 @@ It's my implementation of the 2 forms, which were given in the design templates.
 * Clone the project to a folder.
 * Open terminal and type: ``` cd .\avatao-frontend\ ``` .
 * In the folder(avatao-frontend) run the ``` npm install ``` command.
-* After every NPM dependency is installed, run the ``` npm start ``` command!
+* After every NPM dependency is installed, run the ``` ng serve ``` command!
 * Optional CORS: See QuickDocumentation.md 's IMPORTANT part.
 * Open browser and navigate to localhost:4200 .
 
